@@ -13,18 +13,20 @@ type RevealerProps = {
   style: React.CSSProperties;
   children: React.ReactNode;
   underneath: React.ReactNode;
+  direction?: "left" | "right";
 };
 
 export function Revealer({
   className,
   children,
   underneath,
+  direction = "left",
   ...props
 }: RevealerProps) {
   const parentVariants = {
     initial: { x: 0, y: 0, opacity: 1 },
     hover: {
-      x: "-100%",
+      x: direction === "left" ? "-100%" : "100%",
       opacity: 0,
     },
   };

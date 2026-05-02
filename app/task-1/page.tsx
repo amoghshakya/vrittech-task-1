@@ -87,6 +87,7 @@ export default function Home() {
             style={{
               backgroundColor: card.bg,
             }}
+            direction={index % 2 === 0 ? "left" : "right"}
             key={`${card.title}-${index}`}
             underneath={<card.underneath bg={card.bg} />}
           >
