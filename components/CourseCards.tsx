@@ -90,7 +90,10 @@ export function CourseCards() {
                     className="flex flex-col h-full w-full"
                   >
                     <div className="flex justify-end items-center text-white text-sm font-medium">
-                      View all Courses <ArrowRight className="ml-2 h-4 w-4" />
+                      <a href="https://github.com/amoghshakya">
+                        View all Courses
+                      </a>{" "}
+                      <ArrowRight className="ml-2 h-4 w-4" />
                     </div>
                     <div className="flex-1 flex items-center justify-center pt-4">
                       <Image
@@ -151,9 +154,13 @@ export function CourseCards() {
                   {card.title}
                 </h2>
 
-                <motion.p layout="position" className="text-lg">
-                  {card.subtitle}
-                </motion.p>
+                <motion.p
+                  layout="position"
+                  className="text-lg"
+                  dangerouslySetInnerHTML={{
+                    __html: card.subtitle,
+                  }}
+                />
               </motion.div>
             </div>
           </motion.div>
