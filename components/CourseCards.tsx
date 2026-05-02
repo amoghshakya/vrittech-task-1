@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { useState } from "react";
 import { padNumber } from "@/lib/utils";
-import { Card } from "./ui/card";
 
 export function CourseCards() {
   const cardColors = {
@@ -14,6 +13,7 @@ export function CourseCards() {
     inactive: "#f9ebec",
   };
   const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [prevIndex, setPrevIndex] = useState<number>(activeIndex);
 
   const cards = [
     {
@@ -50,7 +50,11 @@ export function CourseCards() {
           <motion.div
             key={card.id}
             layout
-            onClick={() => setActiveIndex(index)}
+            onClick={() => {
+              // store this so we can direction aware translate X
+              setPrevIndex(activeIndex);
+              setActiveIndex(index);
+            }}
             animate={{
               flex: isActive ? 3 : 1,
               backgroundColor: isActive
@@ -59,7 +63,6 @@ export function CourseCards() {
               color: isActive ? cardColors.inactive : cardColors.active,
             }}
             transition={{
-              delay: 0.1,
               type: "spring",
               stiffness: 100,
               damping: 20,
@@ -73,13 +76,13 @@ export function CourseCards() {
                 {isActive && (
                   <motion.div
                     initial={{
-                      x: -500,
+                      x: prevIndex < activeIndex ? -500 : 500,
                     }}
                     animate={{
                       x: 0,
                     }}
                     exit={{
-                      x: 500,
+                      x: prevIndex < activeIndex ? -500 : 500,
                     }}
                     transition={{
                       delay: 0.1,
@@ -137,7 +140,7 @@ export function CourseCards() {
                 }}
                 className={clsx(
                   "flex flex-col transition-colors duration-500",
-                  isActive ? "text-white" : "text-[#c33241]",
+                  isActive ? "text-white" : "text-[#c33241] w-50",
                 )}
                 transition={{
                   type: "spring",
@@ -146,7 +149,7 @@ export function CourseCards() {
                 }}
               >
                 <h2
-                  className="text-4xl font-bold!"
+                  className="text-4xl font-bold! font-sans!"
                   style={{
                     color: isActive ? cardColors.inactive : cardColors.active,
                   }}
