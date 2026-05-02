@@ -67,7 +67,7 @@ const cardData = [
 
 export default function Home() {
   return (
-    <div className="p-8 px-8 container mx-auto lg:px-24">
+    <div className="p-8 px-8 container mx-auto lg:px-24 overflow-x-clip">
       <div className="space-y-2">
         <p className="font-semibold text-xl">Your SkillShikshya Journey</p>
         <h1 className="text-4xl">
@@ -81,7 +81,7 @@ export default function Home() {
         {cardData.map((card, index) => (
           <Revealer
             className={clsx(
-              "relative space-y-2 flex gap-2",
+              "relative space-y-2 flex gap-2 shadow-xl",
               index % 2 === 0 ? "flex-row" : "flex-row-reverse",
             )}
             style={{

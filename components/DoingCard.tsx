@@ -9,7 +9,7 @@ export function DoingCard({ bg }: { bg: string }) {
       }}
     >
       <div className="flex items-center justify-center relative min-w-120 min-h-88 px-4">
-        <h1 className="text-background! z-25 w-2/5 absolute top-1/4 left-15 -translate-y-1/2">
+        <h1 className="text-background! z-25 text-xl w-2/5 absolute top-1/4 left-15 -translate-y-1/2 drop-shadow-2xl">
           Focused faces&mdash;learning mode: ON!
         </h1>
         <Image
@@ -21,7 +21,7 @@ export function DoingCard({ bg }: { bg: string }) {
         />
       </div>
       <div className="flex items-center justify-center relative min-w-130 min-h-88 px-4 mx-8">
-        <h1 className="text-background! z-25 absolute top-1/4 -translate-y-1/2">
+        <h1 className="text-background! text-xl z-25 absolute top-1/4 -translate-y-1/2 drop-shadow-2xl">
           Laptops, lessons, and a whole lot of growth!
         </h1>
         <Image

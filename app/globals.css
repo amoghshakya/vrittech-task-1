@@ -37,7 +37,7 @@ h6 {
 }
 
 .hover-animation {
-  animation: hoverAnimation 4s ease-in-out infinite alternate;
+  animation: hoverAnimation 3s ease-in-out infinite alternate;
 }
 
 @keyframes hoverAnimation {
@@ -46,7 +46,7 @@ h6 {
   }
 
   100% {
-    transform: translateY(-10px);
+    transform: translateY(-15px);
   }
 }
 
