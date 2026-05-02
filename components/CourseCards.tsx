@@ -43,7 +43,7 @@ export function CourseCards() {
   ];
 
   return (
-    <div className="flex w-full h-[600px] gap-4 py-8">
+    <div className="flex flex-col md:flex-row w-full h-[600px] gap-4 py-8">
       {cards.map((card, index) => {
         const isActive = activeIndex === index;
         return (
@@ -57,9 +57,9 @@ export function CourseCards() {
             }}
             animate={{
               flex: isActive ? 3 : 1,
-              backgroundColor: isActive
-                ? cardColors.active
-                : cardColors.inactive,
+              // backgroundColor: isActive
+              //   ? cardColors.active
+              //   : cardColors.inactive,
               color: isActive ? cardColors.inactive : cardColors.active,
             }}
             transition={{
@@ -69,6 +69,30 @@ export function CourseCards() {
             }}
             className="relative h-full rounded-4xl cursor-pointer overflow-hidden p-8 flex flex-col justify-between border hover:border-red-500 transition border-transparent"
           >
+            {/* the circle overlay anim is much easier than i thought */}
+            {/* keep a dormant div absolute positioned in the corner and animate when we're active */}
+            <motion.div
+              initial={{
+                scale: 0,
+              }}
+              animate={{
+                scale: isActive ? 12 : 0,
+              }}
+              transition={{
+                delay: 0.1,
+                type: "spring",
+                stiffness: 100,
+                damping: 20,
+              }}
+              style={{
+                transformOrigin: "center",
+                backgroundColor: isActive
+                  ? cardColors.active
+                  : cardColors.inactive,
+              }}
+              className="absolute bottom-0 left-0 w-32 h-32 rounded-full -z-20"
+            ></motion.div>
+
             {/* Top Section here*/}
             {/* this is the part which is supposed to slide out of the card*/}
             <div className="relative h-1/2 w-full">
@@ -82,10 +106,11 @@ export function CourseCards() {
                       x: 0,
                     }}
                     exit={{
+                      // the exit behaves weirdly if i swap the values
+                      // probably because we'd be looking at stale data on exit anim
                       x: prevIndex < activeIndex ? -500 : 500,
                     }}
                     transition={{
-                      delay: 0.1,
                       type: "spring",
                       stiffness: 100,
                       damping: 20,
@@ -104,7 +129,7 @@ export function CourseCards() {
                         alt="Tech Stack Illustration"
                         width={500}
                         height={200}
-                        className="object-contain"
+                        className="object-cover"
                       />
                     </div>
                   </motion.div>
@@ -160,7 +185,9 @@ export function CourseCards() {
                 <motion.p
                   layout="position"
                   className="text-lg"
+                  // biome-ignore lint/security/noDangerouslySetInnerHtml: no idea if there's other way to inject unicode (&xxx;)
                   dangerouslySetInnerHTML={{
+                    // linter says this is bad
                     __html: card.subtitle,
                   }}
                 />
