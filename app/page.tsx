@@ -67,7 +67,7 @@ const cardData = [
 
 export default function Home() {
   return (
-    <div className="p-8 px-8 lg:px-24">
+    <div className="p-8 px-8 container mx-auto lg:px-24">
       <div className="space-y-2">
         <p className="font-semibold text-xl">Your SkillShikshya Journey</p>
         <h1 className="text-3xl">
@@ -116,7 +116,9 @@ export default function Home() {
               <p
                 className={clsx(
                   "text-base mt-8",
-                  index % 2 === 1 ? "pr-40" : "pl-40",
+                  index % 2 === 1
+                    ? "md:pr-40 max-sm:pb-40"
+                    : "md:pl-40 max-sm:pb-40",
                 )}
               >
                 {card.body}
