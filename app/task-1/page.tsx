@@ -77,7 +77,7 @@ export default function Home() {
         </h1>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4">
         {cardData.map((card, index) => (
           <Revealer
             className={clsx(

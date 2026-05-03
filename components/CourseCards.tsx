@@ -43,7 +43,7 @@ export function CourseCards() {
   ];
 
   return (
-    <div className="flex flex-col md:flex-row w-full h-[600px] gap-4 py-8">
+    <div className="flex flex-col md:flex-row w-full h-[900px] md:h-[600px] gap-4 py-8">
       {cards.map((card, index) => {
         const isActive = activeIndex === index;
         return (
@@ -76,7 +76,7 @@ export function CourseCards() {
                 scale: 0,
               }}
               animate={{
-                scale: isActive ? 12 : 0,
+                scale: isActive ? 18 : 0,
               }}
               transition={{
                 delay: 0.1,
