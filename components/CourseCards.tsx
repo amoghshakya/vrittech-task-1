@@ -68,6 +68,9 @@ export function CourseCards() {
               damping: 20,
             }}
             className="relative h-full rounded-4xl cursor-pointer overflow-hidden p-8 flex flex-col justify-between border hover:border-red-500 transition border-transparent"
+            style={{
+              backgroundColor: !isActive ? cardColors.inactive : "",
+            }}
           >
             {/* the circle overlay anim is much easier than i thought */}
             {/* keep a dormant div absolute positioned in the corner and animate when we're active */}
@@ -81,14 +84,12 @@ export function CourseCards() {
               transition={{
                 delay: 0.1,
                 type: "spring",
-                stiffness: 100,
-                damping: 20,
+                stiffness: 50,
+                damping: 30,
               }}
               style={{
                 transformOrigin: "center",
-                backgroundColor: isActive
-                  ? cardColors.active
-                  : cardColors.inactive,
+                backgroundColor: isActive ? cardColors.active : "#ffffff",
               }}
               className="absolute bottom-0 left-0 w-32 h-32 rounded-full -z-20"
             ></motion.div>
@@ -147,8 +148,8 @@ export function CourseCards() {
               <motion.div
                 layout
                 className={clsx(
-                  "font-bold leading-none select-none text-8xl",
-                  isActive ? "text-white mr-4" : "text-[#c33241]",
+                  "font-bold leading-none select-none text-6xl md:text-8xl",
+                  isActive ? "text-white md:mr-4" : "text-[#c33241]",
                 )}
               >
                 {padNumber(card.count)}
@@ -165,7 +166,7 @@ export function CourseCards() {
                 }}
                 className={clsx(
                   "flex flex-col transition-colors duration-500",
-                  isActive ? "text-white" : "text-[#c33241] w-50",
+                  isActive ? "text-white" : "text-[#c33241] w-25 md:w-50",
                 )}
                 transition={{
                   type: "spring",
@@ -174,7 +175,7 @@ export function CourseCards() {
                 }}
               >
                 <h2
-                  className="text-4xl font-bold! font-sans!"
+                  className="text-2xl md:text-4xl font-bold! font-sans!"
                   style={{
                     color: isActive ? cardColors.inactive : cardColors.active,
                   }}
@@ -184,7 +185,7 @@ export function CourseCards() {
 
                 <motion.p
                   layout="position"
-                  className="text-lg"
+                  className="text-base md:text-lg"
                   // biome-ignore lint/security/noDangerouslySetInnerHtml: no idea if there's other way to inject unicode (&xxx;)
                   dangerouslySetInnerHTML={{
                     // linter says this is bad
